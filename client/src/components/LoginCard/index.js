@@ -3,6 +3,7 @@ import LoginBtn from "../LoginBtn";
 
 function LoginCard() {
     return (
+        // TODO: might need to add back commented out row and col lines for proper mobile responsiveness
         // <div class="row">
             // <div class="col s12 m5">
             <div class="card-panel black center-align">
