@@ -1,8 +1,8 @@
-import LoginBtn from "../components/LoginBtn";
-
 function Login() {
     return (
-        <LoginBtn />
+        <div className="container">
+            <h3>THIS IS THE LOG IN PAGE</h3>
+        </div>
     )
 }
 
