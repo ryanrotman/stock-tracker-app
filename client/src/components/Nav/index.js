@@ -1,11 +1,39 @@
-import React from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import M from "materialize-css";
+import LoginBtn from "../LoginBtn"
+import LogoutBtn from "../LogoutBtn";
+import AuthenticationBtn from "../AuthenticationBtn";
 
 function Nav() {
+
+    useEffect(() => {
+        let sidenav = document.querySelector('#nav-mobile');
+        M.Sidenav.init(sidenav, {});
+    }, []);
+
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a className="navbar-brand" href="/">
-                React Reading List
-      </a>
+        <nav className="black" role="navigation">
+            <div className="nav-wrapper container">
+            <Link to="/" id="logo-container" className="brand-logo">Stock Tracker</Link>
+            <ul className="right hide-on-med-and-down">
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/current">Current Stocks</Link></li>
+                <li><Link to="/interested">Interested Stocks</Link></li>
+                <li><AuthenticationBtn /></li>
+            </ul>
+
+            <ul id="nav-mobile" className="right sidenav">
+                <li className="white-text"><Link to="/">Home</Link></li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/current">Current Stocks</Link></li>
+                <li><Link to="/interested">Interested Stocks</Link></li>
+                <li><AuthenticationBtn /></li>
+            </ul>
+            {/* eslint-disable-next-line */}
+            <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+            </div>
         </nav>
     );
 }
