@@ -2,7 +2,6 @@ import { useState } from "react";
 import API from "../../utils/API";
 import SearchBox from "../SearchBox";
 import SearchResults from "../SearchResults";
-import SearchResultsBtn from "../SearchResultsBtn";
 
 function SearchFeature() {
 
@@ -35,6 +34,13 @@ function SearchFeature() {
         };
     };
 
+    function handleStockSelection(event) {
+        event.preventDefault();
+        // console.log("StockSelection----------> ", event);
+        let stockSymbol = event.target.dataset.value;
+        console.log("StockSelection: ", `Stock ${stockSymbol} has been selected.`);
+    }
+
     return (
         <div>
             <div className="col s12 m6 card">
@@ -48,6 +54,7 @@ function SearchFeature() {
             <div className="col s12 m6">
                 <SearchResults
                     stockNames={stockNames}
+                    onClick={handleStockSelection}
                 />
             </div>
         </div>

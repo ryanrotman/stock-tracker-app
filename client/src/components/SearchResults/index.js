@@ -14,6 +14,7 @@ function SearchResults(props) {
                                 symbol={stockName["1. symbol"]}
                                 name={stockName["2. name"]}
                                 region={stockName["4. region"]}
+                                onClick={props.onClick}
                             />
                         ))
                     ) : (
