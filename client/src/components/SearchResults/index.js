@@ -17,7 +17,7 @@ function SearchResults(props) {
                             />
                         ))
                     ) : (
-                        <h6 className="center-align"><strong>No Stock Results to Display</strong></h6>
+                        <h6 className="center-align"><strong>No Search Results to Display</strong></h6>
                     )}
                     </div>
                 </div>

@@ -8,7 +8,7 @@ function SearchBox(props) {
                         <div className="input-field col s12">
                         <input id="company-name" type="text" className="validate" {...props} />
                         <label htmlFor="company-name">Company Name or Stock Symbol</label>
-                        <span className="helper-text" data-error="must enter a company name"></span>
+                        {/* <span className="helper-text" data-error="must enter a company name"></span> */}
                         </div>
                     </div>
                     <div className="left-align">
