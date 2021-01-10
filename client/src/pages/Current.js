@@ -6,7 +6,9 @@ function Current() {
         <div className="container">
             <h3>THIS IS THE CURRENTLY INVESTED IN PAGE</h3>
             <p>This is a test of the Alphavantage Search Endpoint to get company stock info:</p>
-            <SearchFeature />
+            <div className="row">
+                <SearchFeature />
+            </div>
             {/* <p>This is an example of the stock graph brought in:</p> */}
             {/* <Stock /> */}
         </div>

@@ -37,15 +37,19 @@ function SearchFeature() {
 
     return (
         <div>
-            <SearchBox
-                onChange={handleInputChange}
-                name="search"
-                onClick={handleFormSubmit}
-                value={formInput.search}
-            />
-            <SearchResults
-                stockNames={stockNames}
-            />
+            <div className="col s12 m6">
+                <SearchBox
+                    onChange={handleInputChange}
+                    name="search"
+                    onClick={handleFormSubmit}
+                    value={formInput.search}
+                />
+            </div>
+            <div className="col s12 m6">
+                <SearchResults
+                    stockNames={stockNames}
+                />
+            </div>
         </div>
     )
 };
