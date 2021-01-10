@@ -10,9 +10,10 @@ function SearchResults(props) {
                     {props.stockNames.length ? (
                         props.stockNames.map(stockName => (
                             <SearchResultsBtn
-                                key={stockName.symbol}
-                                name={stockName.name}
-                                region={stockName.region}
+                                key={stockName["1. symbol"]}
+                                symbol={stockName["1. symbol"]}
+                                name={stockName["2. name"]}
+                                region={stockName["4. region"]}
                             />
                         ))
                     ) : (
