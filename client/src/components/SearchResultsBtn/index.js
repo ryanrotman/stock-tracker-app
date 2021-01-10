@@ -1,6 +1,6 @@
 function SearchResultsBtn(props) {
     return (
-        <button className="waves-effect waves-teal btn-flat">
+        <button className="col s12 waves-effect waves-teal btn-flat">
             {props.key} | {props.name} | {props.region}
         </button>
     )
