@@ -1,9 +1,11 @@
 import axios from "axios";
 
-export default {
+const APIkey = process.env.REACT_APP_ALPHAVANTAGE_API_KEY
+
+const API = {
     // Gets all books
-    getBooks: function () {
-        return axios.get("/api/books");
+    getStockNames: (query) => {
+        return axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${APIkey}`);
     },
     // Gets the book with the given id
     getBook: function (id) {
@@ -18,3 +20,5 @@ export default {
         return axios.post("/api/books", bookData);
     }
 };
+
+export default API;
