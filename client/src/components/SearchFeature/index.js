@@ -46,13 +46,6 @@ function SearchFeature() {
             <SearchResults
                 stockNames={stockNames}
             />
-            {/* {stockNames.length ? (
-                stockNames.map(stockName => (
-                    <SearchResultsBtn
-                        key={}
-                    />
-                ))
-            )} */}
         </div>
     )
 };
