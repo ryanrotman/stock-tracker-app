@@ -12,8 +12,8 @@ const API = {
         return axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${query}&apikey=${API_KEY}`);
     },
     // Gets the stock with the given id
-    getStock: function (id) {
-        return axios.get("/api/stocks/" + id);
+    getStock: function (stockData) {
+        return axios.get("/api/stocks/", stockData);
     },
     // Deletes the stock with the given id
     deleteStock: function (id) {
