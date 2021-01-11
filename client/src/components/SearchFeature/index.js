@@ -37,8 +37,11 @@ function SearchFeature() {
     function handleStockSelection(event) {
         event.preventDefault();
         // console.log("StockSelection----------> ", event);
+        // console.log("Window: ", window);
+        let status = window.location.pathname;
+        status = status.slice(1)
         let stockSymbol = event.target.dataset.value;
-        console.log("StockSelection: ", `Stock ${stockSymbol} has been selected.`);
+        console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
     }
 
     return (
