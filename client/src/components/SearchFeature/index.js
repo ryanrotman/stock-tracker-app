@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import API from "../../utils/API";
 import SearchBox from "../SearchBox";
 import SearchResults from "../SearchResults";
+import M from "materialize-css";
 
 function SearchFeature() {
+
+    const { user } = useAuth0();
 
     const [stockNames, setStockNames] = useState([]);
     const [formInput, setFormInput] = useState({
@@ -42,6 +46,15 @@ function SearchFeature() {
         status = status.slice(1)
         let stockSymbol = event.target.dataset.value;
         console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
+        console.log("LOGGED IN USER: ", user.sub);
+
+        API.saveStock({
+            user: user.sub,
+            symbol: stockSymbol,
+            status: status
+        })
+
+        M.toast({html: `Stock ${stockSymbol} has been saved!`})
     }
 
     return (
