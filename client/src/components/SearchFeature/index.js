@@ -7,6 +7,8 @@ import M from "materialize-css";
 
 function SearchFeature() {
 
+    // TODO: FIXME: will probably need to bring all this code (except the return) up one level to the page level to be able to access the loadStocks function when a new stock is saved, then pass everything as props throughout the various components
+
     const { user } = useAuth0();
 
     const [stockNames, setStockNames] = useState([]);
