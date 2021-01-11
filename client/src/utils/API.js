@@ -9,7 +9,7 @@ const API = {
     },
     // Gets stock data for graph
     getStockData: (query) => {
-        return axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${query}&outputsize=compact&apikey=${API_KEY}`);
+        return axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${query}&apikey=${API_KEY}`);
     },
     // Gets the stock with the given id
     getStock: function (id) {
