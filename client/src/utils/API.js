@@ -13,7 +13,8 @@ const API = {
     },
     // Gets the stock with the given id
     getStock: function (stockData) {
-        return axios.get("/api/stocks/", stockData);
+        console.log("STOCK DATA: ", stockData);
+        return axios.get("/api/stocks/", {params: stockData});
     },
     // Deletes the stock with the given id
     deleteStock: function (id) {
