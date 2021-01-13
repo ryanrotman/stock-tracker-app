@@ -3,7 +3,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "../components/SearchBox";
 import SearchResults from "../components/SearchResults";
 import API from "../utils/API";
-import StockGraphs from "../components/StockGraphs";
+// import StockGraphs from "../components/StockGraphs";
+import StockTabs from "../components/StockTabs";
+import StockTabsDivs from "../components/StockTabsDivs";
 import M from "materialize-css";
 
 function Current() {
@@ -91,6 +93,16 @@ function Current() {
         }).catch((err) => console.log(err));
     };
 
+    function handleStockDelete(id) {
+        console.log("ID OF STOCK BEING DELETED", id);
+        API.deleteStock(id)
+            .then(res => loadStocks())
+            .catch(err => console.log(err))
+        
+        M.toast({html: `Stock has been deleted!`})
+    }
+
+
     return (
         <div className="container">
             <h3 className="center-align">Stocks Currently Invested In</h3>
@@ -112,9 +124,32 @@ function Current() {
                 </div>
             </div>
             <h6>Stock Graph Section:</h6>
-            <StockGraphs
+            {/* TODO: FIXME: BUILD OUT NEW COMPONENT (EX. STOCKGRAPHFEATURE) TO HOLD BELOW CODE FOR CLEANER LOOK */}
+            {/* <StockGraphs
                 stocks={stocks}
-            />
+                onClick={() => handleStockDelete()}
+            /> */}
+            <div className="row">
+                <div className="col s12">
+                    <ul className="tabs tabs-fixed-width z-depth-1">
+                        {stocks.map(stock => (
+                            <StockTabs
+                                key={stock._id}
+                                symbol={stock.symbol}
+                            />
+                        ))}
+                    </ul>
+                </div>
+                {stocks.map(stock => (
+                    <StockTabsDivs
+                        key={stock._id}
+                        symbol={stock.symbol}
+                        status={stock.status}
+                        id={stock._id}
+                        onClick={() => handleStockDelete(stock._id)}
+                    />
+                ))}
+            </div>
         </div>
     )
 }
