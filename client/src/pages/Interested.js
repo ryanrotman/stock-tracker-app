@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "../components/SearchBox";
 import SearchResults from "../components/SearchResults";
-// import StockGraphs from "../components/StockGraphs";
 import StockTabs from "../components/StockTabs";
 import StockTabsDivs from "../components/StockTabsDivs";
 import M from "materialize-css";
@@ -15,6 +14,8 @@ function Interested() {
     const [formInput, setFormInput] = useState({
         search: ""
     });
+    const [stockChartXValues, setStockChartXValues] = useState([]);
+    const [stockChartYValues, setStockChartYValues] = useState([]);
 
     const { user } = useAuth0();
 
@@ -31,6 +32,24 @@ function Interested() {
 
     function onTabShow() {
         console.log("STOCK GRAPH CONTENT SHOULD LOAD NOW");
+        let stockSymbol = document.querySelector(".active").innerHTML;
+        console.log("STOCK SYMBOL OF SELECTED TAB", stockSymbol);
+
+        let stockChartXValuesList = [];
+        let stockChartYValuesList = [];
+
+        API.getStockData(stockSymbol).then((res) => {
+            console.log("DATA FROM GRAPH BUILD API CALL: ", res.data);
+            let data = res.data
+            for (var key in data["Time Series (Daily)"]) {
+                stockChartXValuesList.push(key);
+                stockChartYValuesList.push(data["Time Series (Daily)"][key]["4. close"]);
+            }
+            console.log("X VALUES: ", stockChartXValuesList);
+            console.log("Y VALUES: ", stockChartYValuesList);
+            setStockChartXValues(stockChartXValuesList);
+            setStockChartYValues(stockChartYValuesList);
+        }).catch(err => console.log(err));
     }
 
     function handleInputChange(event) {
@@ -108,6 +127,7 @@ function Interested() {
 
         API.updateStock(id, {status: value})
             .then(res => loadStocks())
+            .then(res => onTabShow())
             .catch(err => console.log(err))
 
         M.toast({html: `Stock has been moved to ${value}!`})
@@ -158,6 +178,8 @@ function Interested() {
                         newStatus={"current"}
                         onClick={() => handleStockDelete(stock._id)}
                         onUpdate={handleStockUpdate}
+                        xValues={stockChartXValues}
+                        yValues={stockChartYValues}
                     />
                 ))}
             </div>

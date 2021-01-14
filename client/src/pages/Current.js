@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "../components/SearchBox";
 import SearchResults from "../components/SearchResults";
 import API from "../utils/API";
-// import StockGraphs from "../components/StockGraphs";
 import StockTabs from "../components/StockTabs";
 import StockTabsDivs from "../components/StockTabsDivs";
 import M from "materialize-css";
@@ -15,6 +14,9 @@ function Current() {
     const [formInput, setFormInput] = useState({
         search: ""
     });
+    const [stockChartXValues, setStockChartXValues] = useState([]);
+    const [stockChartYValues, setStockChartYValues] = useState([]);
+    // const [stockData, setStockData] = useState([]);
 
     const { user } = useAuth0();
 
@@ -32,6 +34,26 @@ function Current() {
 
     function onTabShow() {
         console.log("STOCK GRAPH CONTENT SHOULD LOAD NOW");
+        let stockSymbol = document.querySelector(".active").innerHTML;
+        console.log("STOCK SYMBOL OF SELECTED TAB", stockSymbol);
+
+        let stockChartXValuesList = [];
+        let stockChartYValuesList = [];
+
+        API.getStockData(stockSymbol).then((res) => {
+            console.log("DATA FROM GRAPH BUILD API CALL: ", res.data);
+            let data = res.data
+            for (var key in data["Time Series (Daily)"]) {
+                stockChartXValuesList.push(key);
+                stockChartYValuesList.push(data["Time Series (Daily)"][key]["4. close"]);
+            }
+            console.log("X VALUES: ", stockChartXValuesList);
+            console.log("Y VALUES: ", stockChartYValuesList);
+            setStockChartXValues(stockChartXValuesList);
+            setStockChartYValues(stockChartYValuesList);
+            // TODO: need to drill down one more section to get the day; YYYY-MM-DD
+            // setStockData(data["Time Series (Daily)"][0])
+        }).catch(err => console.log(err));
     }
 
     function handleInputChange(event) {
@@ -111,6 +133,7 @@ function Current() {
 
         API.updateStock(id, {status: value})
             .then(res => loadStocks())
+            .then(res => onTabShow())
             .catch(err => console.log(err))
 
         M.toast({html: `Stock has been moved to ${value}!`})
@@ -138,10 +161,6 @@ function Current() {
             </div>
             <h6>Stock Graph Section:</h6>
             {/* TODO: FIXME: BUILD OUT NEW COMPONENT (EX. STOCKGRAPHFEATURE) TO HOLD BELOW CODE FOR CLEANER LOOK */}
-            {/* <StockGraphs
-                stocks={stocks}
-                onClick={() => handleStockDelete()}
-            /> */}
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
@@ -162,6 +181,9 @@ function Current() {
                         newStatus={"interested"}
                         onClick={() => handleStockDelete(stock._id)}
                         onUpdate={handleStockUpdate}
+                        xValues={stockChartXValues}
+                        yValues={stockChartYValues}
+                        // stockData={stockData}
                     />
                 ))}
             </div>
