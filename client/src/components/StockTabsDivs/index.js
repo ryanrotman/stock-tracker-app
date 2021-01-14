@@ -14,9 +14,9 @@ function StockTabsDivs(props) {
                 xValues={props.xValues}
                 yValues={props.yValues}
             />
-            <ul>
+            {/* <ul>
                 <li><strong>Open:</strong> {props.stockData["1. open"]} <br /> <strong>High:</strong> {props.stockData["2. high"]} <br /> <strong>Low:</strong> {props.stockData["3. low"]} <br /> <strong>Close:</strong> {props.stockData["4. close"]}</li>
-            </ul>
+            </ul> */}
         </div>
     )
 }
