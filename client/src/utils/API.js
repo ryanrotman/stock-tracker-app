@@ -23,6 +23,10 @@ const API = {
     // Saves a stock to the database
     saveStock: function (stockData) {
         return axios.post("/api/stocks", stockData);
+    },
+    // Updates a stock in the database with the given id
+    updateStock: function (id, {status}) {
+        return axios.put("/api/stocks/" + id, {status});
     }
 };
 

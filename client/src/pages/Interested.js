@@ -99,6 +99,20 @@ function Interested() {
         M.toast({html: `Stock has been deleted!`})
     }
 
+    function handleStockUpdate(event) {
+        event.preventDefault;
+        // console.log("StockUpdate----------> ", event);
+        // console.log("StockUpdate-ID---------> ", event.target.id);
+        // console.log("StockUpdate-NEWSTATUS---------> ", event.target.value);
+        const { id, value } = event.target;
+
+        API.updateStock(id, {status: value})
+            .then(res => loadStocks())
+            .catch(err => console.log(err))
+
+        M.toast({html: `Stock has been moved to ${value}!`})
+    }
+
     return (
         <div className="container">
             <h3 className="center-align">Stocks Interested In</h3>
@@ -141,7 +155,9 @@ function Interested() {
                         symbol={stock.symbol}
                         status={stock.status}
                         id={stock._id}
+                        newStatus={"current"}
                         onClick={() => handleStockDelete(stock._id)}
+                        onUpdate={handleStockUpdate}
                     />
                 ))}
             </div>
