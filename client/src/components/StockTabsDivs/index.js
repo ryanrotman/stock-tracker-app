@@ -5,6 +5,9 @@ function StockTabsDivs(props) {
             <button className="waves-effect waves-light btn" onClick={() => props.onClick(props.id)}>
                 Delete Stock
             </button>
+            <button className="waves-effect waves-light btn" value={props.newStatus} id={props.id} onClick={props.onUpdate}>
+                Move to {props.newStatus}
+            </button>
             <ul>
                 <li><strong>ID:</strong> {props.id} <br /> <strong>Symbol:</strong> {props.symbol} <br /> <strong>Status:</strong> {props.status}</li>
             </ul>
