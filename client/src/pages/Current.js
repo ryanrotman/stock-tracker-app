@@ -50,7 +50,6 @@ function Current() {
             console.log("Y VALUES: ", stockChartYValuesList);
             setStockChartXValues(stockChartXValuesList);
             setStockChartYValues(stockChartYValuesList);
-            // TODO: need to drill down one more section to get the day; YYYY-MM-DD
             setStockData(data)
         }).catch(err => console.log(err));
     }
@@ -162,7 +161,6 @@ function Current() {
                 </div>
             </div>
             <h6>Stock Graph Section:</h6>
-            {/* TODO: FIXME: BUILD OUT NEW COMPONENT (EX. STOCKGRAPHFEATURE) TO HOLD BELOW CODE FOR CLEANER LOOK */}
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
@@ -174,7 +172,8 @@ function Current() {
                             />    
                             ))
                         ) : (
-                            <h6 className="tab"><strong>No Stocks Have Been Saved</strong></h6>
+                            // <h6 className="tab"><strong>No Stocks Have Been Saved</strong></h6>
+                            <li className="tab"><strong>No Stocks Have Been Saved</strong></li>
                         )}
                         {/* {stocks.map(stock => (
                             <StockTabs

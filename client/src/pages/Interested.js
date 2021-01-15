@@ -16,18 +16,19 @@ function Interested() {
     });
     const [stockChartXValues, setStockChartXValues] = useState([]);
     const [stockChartYValues, setStockChartYValues] = useState([]);
+    const [stockData, setStockData] = useState([]);
 
     const { user } = useAuth0();
 
     useEffect(() => {
+        console.log("LOADING STOCKS FROM DATABASE");
         loadStocks();
     }, []);
 
     function tabInit() {
         let el = document.querySelectorAll('.tabs');
-        // TODO: to avoid the overuse of the API call at the beginning of tabs being built, use the onShow function option in the init
-        // TODO: adjust the below onTabShow function to have that be the API call to get the stock data to build the graph
         M.Tabs.init(el, { onShow: onTabShow });
+        onTabShow();
     }
 
     function onTabShow() {
@@ -49,6 +50,7 @@ function Interested() {
             console.log("Y VALUES: ", stockChartYValuesList);
             setStockChartXValues(stockChartXValuesList);
             setStockChartYValues(stockChartYValuesList);
+            setStockData(data)
         }).catch(err => console.log(err));
     }
 
@@ -67,7 +69,7 @@ function Interested() {
             API.getStockNames(formInput.search).then((res) => {
                 // console.log("API RES----------> ", res);
                 // console.log("API RES.DATA----------> ", res.data);
-                console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
+                // console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
                 setStockNames(res.data.bestMatches);
             })
             .then(() => setFormInput({
@@ -101,8 +103,10 @@ function Interested() {
     }
 
     function loadStocks() {
+        const currentUser = user.sub;
+
         API.getStock({
-            user: user.sub,
+            user: currentUser,
             status: "interested"
         }).then((res) => {
             console.log("LOAD CURRENT STOCKS RES: ", res);
@@ -115,6 +119,7 @@ function Interested() {
         console.log("ID OF STOCK BEING DELETED", id);
         API.deleteStock(id)
             .then(res => loadStocks())
+            .then(res => onTabShow())
             .catch(err => console.log(err))
         
         M.toast({html: `Stock has been deleted!`})
@@ -156,10 +161,6 @@ function Interested() {
                 </div>
             </div>
             <h6>Stock Graph Section:</h6>
-            {/* TODO: FIXME: BUILD OUT NEW COMPONENT (EX. STOCKGRAPHFEATURE) TO HOLD BELOW CODE FOR CLEANER LOOK */}
-            {/* <StockGraphs
-                stocks={stocks}
-            /> */}
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
@@ -186,6 +187,7 @@ function Interested() {
                     <StockTabsDivs
                         key={stock._id}
                         symbol={stock.symbol}
+                        company={stock.company}
                         status={stock.status}
                         id={stock._id}
                         newStatus={"current"}
@@ -193,6 +195,7 @@ function Interested() {
                         onUpdate={handleStockUpdate}
                         xValues={stockChartXValues}
                         yValues={stockChartYValues}
+                        stockData={stockData}
                     />
                 ))}
             </div>
