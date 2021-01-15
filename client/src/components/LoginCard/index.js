@@ -1,5 +1,5 @@
 import "./index.css";
-import LoginBtn from "../LoginBtn";
+import AuthenticationBtn from "../AuthenticationBtn";
 
 function LoginCard() {
     return (
@@ -11,7 +11,7 @@ function LoginCard() {
                 </span>
                 <br />
                 <br />
-                <LoginBtn />
+                <AuthenticationBtn />
             </div>
             // </div>
         // </div>
