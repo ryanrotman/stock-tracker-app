@@ -20,7 +20,7 @@ function Nav() {
                     <Link to="/" id="logo-container" className="brand-logo">Stock Tracker</Link>
                     <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
-                            <li><Link to="/">Home</Link></li>
+                            {/* <li><Link to="/">Home</Link></li> */}
                             <li><Link to="/dashboard">Dashboard</Link></li>
                             <li><Link to="/current">Current Stocks</Link></li>
                             <li><Link to="/interested">Interested Stocks</Link></li>
@@ -31,7 +31,7 @@ function Nav() {
             </div>
 
             <ul id="nav-mobile" className="right sidenav">
-                <li className="white-text"><Link to="/">Home</Link></li>
+                {/* <li className="white-text"><Link to="/">Home</Link></li> */}
                 <li><Link to="/dashboard">Dashboard</Link></li>
                 <li><Link to="/current">Current Stocks</Link></li>
                 <li><Link to="/interested">Interested Stocks</Link></li>
