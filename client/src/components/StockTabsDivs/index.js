@@ -1,6 +1,21 @@
+import moment from "moment"
 import StockGraphs from "../StockGraphs";
 
 function StockTabsDivs(props) {
+
+    let today = moment().format("YYYY-MM-DD");
+    console.log("TODAY IS: ", today);
+
+    // console.log("STOCK DATA PASSED INTO TABS DIVS", props.stockData);
+    console.log("GRAB THE TIME SERIES SECTION: ", props.stockData["Time Series (Daily)"]);
+    // console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"][today]);
+
+    // let dataObject = props.stockData["Time Series (Daily)"];
+
+    // console.log("LIST OF KEYS: ", Object.keys(dataObject));
+
+    // setTimeout(function(){ console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"][today]); }, 6000);
+
     return (
         <div id={props.symbol} className="col s12">
             <h5>COMPANY NAME &#40;{props.symbol}&#41;</h5>
@@ -15,7 +30,7 @@ function StockTabsDivs(props) {
                 yValues={props.yValues}
             />
             {/* <ul>
-                <li><strong>Open:</strong> {props.stockData["1. open"]} <br /> <strong>High:</strong> {props.stockData["2. high"]} <br /> <strong>Low:</strong> {props.stockData["3. low"]} <br /> <strong>Close:</strong> {props.stockData["4. close"]}</li>
+                <li><strong>Open:</strong> {props.stockData["Time Series (Daily)"][today]["1. open"]} <br /> <strong>High:</strong> {props.stockData["Time Series (Daily)"][today]["2. high"]} <br /> <strong>Low:</strong> {props.stockData["Time Series (Daily)"][today]["3. low"]} <br /> <strong>Close:</strong> {props.stockData["Time Series (Daily)"][today]["4. close"]}</li>
             </ul> */}
         </div>
     )

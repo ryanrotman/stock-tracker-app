@@ -16,7 +16,7 @@ function Current() {
     });
     const [stockChartXValues, setStockChartXValues] = useState([]);
     const [stockChartYValues, setStockChartYValues] = useState([]);
-    // const [stockData, setStockData] = useState([]);
+    const [stockData, setStockData] = useState([]);
 
     const { user } = useAuth0();
 
@@ -27,9 +27,8 @@ function Current() {
 
     function tabInit() {
             let el = document.querySelectorAll('.tabs');
-            // TODO: to avoid the overuse of the API call at the beginning of tabs being built, use the onShow function option in the init
-            // TODO: adjust the below onTabShow function to have that be the API call to get the stock data to build the graph
             M.Tabs.init(el, { onShow: onTabShow });
+            onTabShow();
     }
 
     function onTabShow() {
@@ -52,7 +51,7 @@ function Current() {
             setStockChartXValues(stockChartXValuesList);
             setStockChartYValues(stockChartYValuesList);
             // TODO: need to drill down one more section to get the day; YYYY-MM-DD
-            // setStockData(data["Time Series (Daily)"][0])
+            setStockData(data)
         }).catch(err => console.log(err));
     }
 
@@ -70,8 +69,8 @@ function Current() {
         if (formInput.search) {
             API.getStockNames(formInput.search).then((res) => {
                 // console.log("API RES----------> ", res);
-                // console.log("API RES.DATA----------> ", res.data);
-                console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
+                console.log("API RES.DATA----------> ", res.data);
+                // console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
                 setStockNames(res.data.bestMatches);
             })
             .then(() => setFormInput({
@@ -119,6 +118,7 @@ function Current() {
         console.log("ID OF STOCK BEING DELETED", id);
         API.deleteStock(id)
             .then(res => loadStocks())
+            .then(res => onTabShow())
             .catch(err => console.log(err))
         
         M.toast({html: `Stock has been deleted!`})
@@ -183,7 +183,7 @@ function Current() {
                         onUpdate={handleStockUpdate}
                         xValues={stockChartXValues}
                         yValues={stockChartYValues}
-                        // stockData={stockData}
+                        stockData={stockData}
                     />
                 ))}
             </div>
