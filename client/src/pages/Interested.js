@@ -83,12 +83,14 @@ function Interested() {
         let status = window.location.pathname;
         status = status.slice(1)
         let stockSymbol = event.target.dataset.value;
+        let company = event.target.dataset.company;
         console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
         console.log("LOGGED IN USER: ", user.sub);
 
         API.saveStock({
             user: user.sub,
             symbol: stockSymbol,
+            company: company,
             status: status
         })
 
@@ -161,12 +163,23 @@ function Interested() {
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
-                        {stocks.map(stock => (
+                        {stocks.length ? (
+                            stocks.map(stock => (
+                                <StockTabs
+                                key={stock._id}
+                                symbol={stock.symbol}
+                            />    
+                            ))
+                        ) : (
+                            // <h6 className="center-align"><strong>No Stocks Have Been Saved</strong></h6>
+                            <li className="tab"><strong>No Stocks Have Been Saved</strong></li>
+                        )}
+                        {/* {stocks.map(stock => (
                             <StockTabs
                                 key={stock._id}
                                 symbol={stock.symbol}
                             />
-                        ))}
+                        ))} */}
                     </ul>
                 </div>
                 {stocks.map(stock => (

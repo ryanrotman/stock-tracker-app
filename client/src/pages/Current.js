@@ -166,12 +166,22 @@ function Current() {
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
-                        {stocks.map(stock => (
+                        {stocks.length ? (
+                            stocks.map(stock => (
+                                <StockTabs
+                                key={stock._id}
+                                symbol={stock.symbol}
+                            />    
+                            ))
+                        ) : (
+                            <h6 className="tab"><strong>No Stocks Have Been Saved</strong></h6>
+                        )}
+                        {/* {stocks.map(stock => (
                             <StockTabs
                                 key={stock._id}
                                 symbol={stock.symbol}
                             />
-                        ))}
+                        ))} */}
                     </ul>
                 </div>
                 {stocks.map(stock => (
