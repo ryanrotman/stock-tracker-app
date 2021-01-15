@@ -7,7 +7,7 @@ function StockTabsDivs(props) {
     console.log("TODAY IS: ", today);
 
     // console.log("STOCK DATA PASSED INTO TABS DIVS", props.stockData);
-    console.log("GRAB THE TIME SERIES SECTION: ", props.stockData["Time Series (Daily)"]);
+    // console.log("GRAB THE TIME SERIES SECTION: ", props.stockData["Time Series (Daily)"]);
     // console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"][today]);
 
     // let dataObject = props.stockData["Time Series (Daily)"];
@@ -18,7 +18,7 @@ function StockTabsDivs(props) {
 
     return (
         <div id={props.symbol} className="col s12">
-            <h5>COMPANY NAME &#40;{props.symbol}&#41;</h5>
+            <h5>{props.company} &#40;{props.symbol}&#41;</h5>
             <button className="waves-effect waves-light btn" onClick={() => props.onClick(props.id)}>
                 Delete Stock
             </button>

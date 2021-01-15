@@ -69,7 +69,7 @@ function Current() {
         if (formInput.search) {
             API.getStockNames(formInput.search).then((res) => {
                 // console.log("API RES----------> ", res);
-                console.log("API RES.DATA----------> ", res.data);
+                // console.log("API RES.DATA----------> ", res.data);
                 // console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
                 setStockNames(res.data.bestMatches);
             })
@@ -86,12 +86,14 @@ function Current() {
         let status = window.location.pathname;
         status = status.slice(1)
         let stockSymbol = event.target.dataset.value;
+        let company = event.target.dataset.company;
         console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
         console.log("LOGGED IN USER: ", user.sub);
 
         API.saveStock({
             user: user.sub,
             symbol: stockSymbol,
+            company: company,
             status: status
         })
 
@@ -176,6 +178,7 @@ function Current() {
                     <StockTabsDivs
                         key={stock._id}
                         symbol={stock.symbol}
+                        company={stock.company}
                         status={stock.status}
                         id={stock._id}
                         newStatus={"interested"}
