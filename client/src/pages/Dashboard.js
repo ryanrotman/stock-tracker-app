@@ -3,7 +3,8 @@ import Profile from "../components/Profile";
 function Dashboard() {
     return (
         <div className="container">
-            <h3>THIS IS THE DASHBOARD PAGE</h3>
+            {/* <br />
+            <h5>Welcome back! Keep track of your current stocks and stocks interested in by visiting the links below! Happy investing!</h5> */}
             <br />
             <Profile />
         </div>

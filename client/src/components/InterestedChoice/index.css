@@ -1,0 +1,10 @@
+.far {
+    font-size: 45px;
+    padding: 5px;
+}
+
+@media only screen and (max-width : 600px) {
+    .link-interested {
+        font-size: 11px;
+    }
+}
