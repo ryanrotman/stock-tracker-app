@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "../components/SearchBox";
 import SearchResults from "../components/SearchResults";
-import API from "../utils/API";
-// import StockGraphs from "../components/StockGraphs";
 import StockTabs from "../components/StockTabs";
 import StockTabsDivs from "../components/StockTabsDivs";
 import M from "materialize-css";
+import API from "../utils/API";
 
 function Current() {
 
@@ -15,6 +14,9 @@ function Current() {
     const [formInput, setFormInput] = useState({
         search: ""
     });
+    const [stockChartXValues, setStockChartXValues] = useState([]);
+    const [stockChartYValues, setStockChartYValues] = useState([]);
+    const [stockData, setStockData] = useState([]);
 
     const { user } = useAuth0();
 
@@ -25,13 +27,31 @@ function Current() {
 
     function tabInit() {
             let el = document.querySelectorAll('.tabs');
-            // TODO: to avoid the overuse of the API call at the beginning of tabs being built, use the onShow function option in the init
-            // TODO: adjust the below onTabShow function to have that be the API call to get the stock data to build the graph
             M.Tabs.init(el, { onShow: onTabShow });
+            onTabShow();
     }
 
     function onTabShow() {
         console.log("STOCK GRAPH CONTENT SHOULD LOAD NOW");
+        let stockSymbol = document.querySelector(".active").innerHTML;
+        console.log("STOCK SYMBOL OF SELECTED TAB", stockSymbol);
+
+        let stockChartXValuesList = [];
+        let stockChartYValuesList = [];
+
+        API.getStockData(stockSymbol).then((res) => {
+            console.log("DATA FROM GRAPH BUILD API CALL: ", res.data);
+            let data = res.data
+            for (var key in data["Time Series (Daily)"]) {
+                stockChartXValuesList.push(key);
+                stockChartYValuesList.push(data["Time Series (Daily)"][key]["4. close"]);
+            }
+            console.log("X VALUES: ", stockChartXValuesList);
+            console.log("Y VALUES: ", stockChartYValuesList);
+            setStockChartXValues(stockChartXValuesList);
+            setStockChartYValues(stockChartYValuesList);
+            setStockData(data)
+        }).catch(err => console.log(err));
     }
 
     function handleInputChange(event) {
@@ -49,7 +69,7 @@ function Current() {
             API.getStockNames(formInput.search).then((res) => {
                 // console.log("API RES----------> ", res);
                 // console.log("API RES.DATA----------> ", res.data);
-                console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
+                // console.log("API RES.DATA.BESTMATCHES----------> ", res.data.bestMatches);
                 setStockNames(res.data.bestMatches);
             })
             .then(() => setFormInput({
@@ -65,12 +85,14 @@ function Current() {
         let status = window.location.pathname;
         status = status.slice(1)
         let stockSymbol = event.target.dataset.value;
+        let company = event.target.dataset.company;
         console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
         console.log("LOGGED IN USER: ", user.sub);
 
         API.saveStock({
             user: user.sub,
             symbol: stockSymbol,
+            company: company,
             status: status
         })
 
@@ -97,6 +119,7 @@ function Current() {
         console.log("ID OF STOCK BEING DELETED", id);
         API.deleteStock(id)
             .then(res => loadStocks())
+            .then(res => onTabShow())
             .catch(err => console.log(err))
         
         M.toast({html: `Stock has been deleted!`})
@@ -111,6 +134,7 @@ function Current() {
 
         API.updateStock(id, {status: value})
             .then(res => loadStocks())
+            .then(res => onTabShow())
             .catch(err => console.log(err))
 
         M.toast({html: `Stock has been moved to ${value}!`})
@@ -137,31 +161,41 @@ function Current() {
                 </div>
             </div>
             <h6>Stock Graph Section:</h6>
-            {/* TODO: FIXME: BUILD OUT NEW COMPONENT (EX. STOCKGRAPHFEATURE) TO HOLD BELOW CODE FOR CLEANER LOOK */}
-            {/* <StockGraphs
-                stocks={stocks}
-                onClick={() => handleStockDelete()}
-            /> */}
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
-                        {stocks.map(stock => (
+                        {stocks.length ? (
+                            stocks.map(stock => (
+                                <StockTabs
+                                key={stock._id}
+                                symbol={stock.symbol}
+                            />    
+                            ))
+                        ) : (
+                            // <h6 className="tab"><strong>No Stocks Have Been Saved</strong></h6>
+                            <li className="tab"><strong>No Stocks Have Been Saved</strong></li>
+                        )}
+                        {/* {stocks.map(stock => (
                             <StockTabs
                                 key={stock._id}
                                 symbol={stock.symbol}
                             />
-                        ))}
+                        ))} */}
                     </ul>
                 </div>
                 {stocks.map(stock => (
                     <StockTabsDivs
                         key={stock._id}
                         symbol={stock.symbol}
+                        company={stock.company}
                         status={stock.status}
                         id={stock._id}
                         newStatus={"interested"}
                         onClick={() => handleStockDelete(stock._id)}
                         onUpdate={handleStockUpdate}
+                        xValues={stockChartXValues}
+                        yValues={stockChartYValues}
+                        stockData={stockData}
                     />
                 ))}
             </div>
