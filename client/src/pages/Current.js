@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "../components/SearchBox";
 import SearchResults from "../components/SearchResults";
-import API from "../utils/API";
 import StockTabs from "../components/StockTabs";
 import StockTabsDivs from "../components/StockTabsDivs";
 import M from "materialize-css";
+import API from "../utils/API";
 
 function Current() {
 
