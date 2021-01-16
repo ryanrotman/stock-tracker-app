@@ -9,6 +9,8 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Loading from "./components/Loading";
 import ProtectedRoute from "./auth/protected-route";
+import Footer from "./components/Footer";
+import './App.css';
 
 function App() {
     const { isLoading } = useAuth0();
@@ -37,6 +39,9 @@ function App() {
                     <NoMatch />
                 </Route>
             </Switch>
+            <footer>
+                <Footer />
+            </footer>
         </Router>
     );
 }
