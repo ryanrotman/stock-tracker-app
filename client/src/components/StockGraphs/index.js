@@ -3,7 +3,7 @@ import Plot from 'react-plotly.js';
 function StockGraphs(props) {
 
     return (
-        <div>
+        <div id="data-graph">
             <Plot
                 data={[
                     {
@@ -15,6 +15,8 @@ function StockGraphs(props) {
                     },
                 ]}
                 layout={{ width: 1000, height: 540 }}
+                // config={{responsive:true}}
+                // divId={"data-graph"}
             />
             {/* see the x,y values on the page */}
             {/* <p>x-values: {this.state.stockChartXValues}</p>
