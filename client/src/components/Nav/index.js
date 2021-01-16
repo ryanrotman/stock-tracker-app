@@ -17,7 +17,7 @@ function Nav() {
             <div className="navbar-fixed">
                 <nav className="black" role="navigation">
                     <div className="nav-wrapper container">
-                    <Link to="/" id="logo-container" className="brand-logo">Stock Tracker</Link>
+                    <a id="logo-container" className="brand-logo">Stock Tracker</a>
                     <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             {/* <li><Link to="/">Home</Link></li> */}
