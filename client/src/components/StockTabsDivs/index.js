@@ -1,5 +1,6 @@
 import moment from "moment"
 import StockGraphs from "../StockGraphs";
+import "./index.css";
 
 function StockTabsDivs(props) {
 
@@ -23,13 +24,14 @@ function StockTabsDivs(props) {
 
     return (
         <div id={props.symbol} className="col s12">
-            <h5>{props.company} &#40;{props.symbol}&#41;</h5>
-            <button className="waves-effect waves-light btn" onClick={() => props.onClick(props.id)}>
-                Delete Stock
-            </button>
-            <button className="waves-effect waves-light btn" value={props.newStatus} id={props.id} onClick={props.onUpdate}>
-                Move to {props.newStatus}
-            </button>
+            <h5>{props.company} &#40;{props.symbol}&#41;
+                <button style={{float:"right"}} className="waves-effect waves-light btn stock-btn" onClick={() => props.onClick(props.id)}>
+                    Delete Stock
+                </button>
+                <button style={{float:"right"}} className="waves-effect waves-light btn stock-btn" value={props.newStatus} id={props.id} onClick={props.onUpdate}>
+                    Move to {props.newStatus}
+                </button>
+            </h5>
             <StockGraphs
                 xValues={props.xValues}
                 yValues={props.yValues}
