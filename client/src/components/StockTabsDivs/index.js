@@ -8,7 +8,12 @@ function StockTabsDivs(props) {
 
     // console.log("STOCK DATA PASSED INTO TABS DIVS", props.stockData);
     // console.log("GRAB THE TIME SERIES SECTION: ", props.stockData["Time Series (Daily)"]);
-    // console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"][today]);
+    // console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"]["2021-01-15"]);
+
+    let todaysData;
+    if (props.stockData["Time Series (Daily)"]) {
+        todaysData = props.stockData["Time Series (Daily)"][today];
+    };
 
     // let dataObject = props.stockData["Time Series (Daily)"];
 
@@ -29,9 +34,13 @@ function StockTabsDivs(props) {
                 xValues={props.xValues}
                 yValues={props.yValues}
             />
-            {/* <ul>
-                <li><strong>Open:</strong> {props.stockData["Time Series (Daily)"][today]["1. open"]} <br /> <strong>High:</strong> {props.stockData["Time Series (Daily)"][today]["2. high"]} <br /> <strong>Low:</strong> {props.stockData["Time Series (Daily)"][today]["3. low"]} <br /> <strong>Close:</strong> {props.stockData["Time Series (Daily)"][today]["4. close"]}</li>
-            </ul> */}
+            {todaysData === undefined ? <h4 className="center-align"><strong>Market is closed today, {today}.</strong></h4> : 
+            <ul className="center-align">
+                <li><strong>Open:</strong> {todaysData["1. open"]}</li>
+                <li><strong>High:</strong> {todaysData["2. high"]}</li>
+                <li><strong>Low:</strong> {todaysData["3. low"]}</li>
+                <li><strong>Close:</strong> {todaysData["4. close"]}</li>
+            </ul>}
         </div>
     )
 }
