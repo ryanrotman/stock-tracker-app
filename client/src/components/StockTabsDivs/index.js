@@ -5,6 +5,7 @@ import "./index.css";
 function StockTabsDivs(props) {
 
     let today = moment().format("YYYY-MM-DD");
+    let longDate = moment().format("dddd, MMMM DD, YYYY")
     console.log("TODAY IS: ", today);
 
     // console.log("STOCK DATA PASSED INTO TABS DIVS", props.stockData);
@@ -36,7 +37,7 @@ function StockTabsDivs(props) {
                 xValues={props.xValues}
                 yValues={props.yValues}
             />
-            {todaysData === undefined ? <h4 className="center-align"><strong>Market is closed today, {today}.</strong></h4> : 
+            {todaysData === undefined ? <h4 className="center-align"><strong>Market is closed today, {longDate}.</strong></h4> : 
             <ul className="center-align">
                 <li><strong>Open:</strong> {todaysData["1. open"]}</li>
                 <li><strong>High:</strong> {todaysData["2. high"]}</li>
