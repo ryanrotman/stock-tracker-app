@@ -15,7 +15,8 @@ const Auth0ProviderWithHistory = ({ children }) => {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri="https://app-stock-investment-tracker.herokuapp.com/dashboard"
+      // FIXME: change redirectUri to live heroku app when final deploy happens
+      redirectUri="http://localhost:3000/dashboard"
       onRedirectCallback={onRedirectCallback}
     >
       {children}
