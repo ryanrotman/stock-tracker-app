@@ -160,7 +160,7 @@ function Interested() {
                     />
                 </div>
             </div>
-            <h6>Stock Graph Section:</h6>
+            {/* Stock Graph Section */}
             <div className="row">
                 <div className="col s12">
                     <ul className="tabs tabs-fixed-width z-depth-1">
