@@ -31,9 +31,9 @@ User Authentication with Auth0
 Dashboard/User Profile Page
 ![ScreenShot_Dashboard](./client/src/assets/images/ScreenShot_Dashboard.png)
 Stock Search Feature
-<!-- ![ScreenShot_StockSearch](./client/src/assets/images/ScreenShot_StockSearch.png) -->
+![ScreenShot_StockSearch](./client/src/assets/images/ScreenShot_StockSearch.png)
 Stock Graph Feature
-<!-- ![ScreenShot_StockGraph](./client/src/assets/images/ScreenShot_StockGraph.png) -->
+![ScreenShot_StockGraph](./client/src/assets/images/ScreenShot_StockGraph.png)
 
 ## Contributing
 Contributing Developers:
