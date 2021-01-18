@@ -26,6 +26,14 @@ This project can be opened and run in multiple ways.
 ## Page Screenshots
 Home/Login Page
 ![ScreenShot_Home](./client/src/assets/images/ScreenShot_Home.png)
+User Authentication with Auth0
+![ScreenShot_UserAuth](./client/src/assets/images/ScreenShot_UserAuth.png)
+Dashboard/User Profile Page
+![ScreenShot_Dashboard](./client/src/assets/images/ScreenShot_Dashboard.png)
+Stock Search Feature
+<!-- ![ScreenShot_StockSearch](./client/src/assets/images/ScreenShot_StockSearch.png) -->
+Stock Graph Feature
+<!-- ![ScreenShot_StockGraph](./client/src/assets/images/ScreenShot_StockGraph.png) -->
 
 ## Contributing
 Contributing Developers:
