@@ -37,20 +37,7 @@ function StockTabsDivs(props) {
                         Move to {props.newStatus}
                     </button>
                 </div>
-                {/* <div className="col s12 m3">
-                    <button style={{float:"right"}} className="waves-effect waves-light btn stock-btn" value={props.newStatus} id={props.id} onClick={props.onUpdate}>
-                        Move to {props.newStatus}
-                    </button>
-                </div> */}
             </div>
-            {/* <h5>{props.company} &#40;{props.symbol}&#41;
-                <button style={{float:"right"}} className="waves-effect waves-light btn stock-btn" onClick={() => props.onClick(props.id)}>
-                    Delete Stock
-                </button>
-                <button style={{float:"right"}} className="waves-effect waves-light btn stock-btn" value={props.newStatus} id={props.id} onClick={props.onUpdate}>
-                    Move to {props.newStatus}
-                </button>
-            </h5> */}
             <StockGraphs
                 xValues={props.xValues}
                 yValues={props.yValues}
