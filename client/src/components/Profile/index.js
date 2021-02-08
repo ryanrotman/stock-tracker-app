@@ -9,11 +9,21 @@ const Profile = () => {
   return (
     isAuthenticated && (
         <div>
+            <div className="row">
+              <div className="col s8 m9">
+                <p><h5>Welcome back {user.nickname}!</h5></p>
+                <p><h5>Keep track of your current stocks and stocks interested in by visiting the links below!</h5></p>
+                <p><h5>Happy investing!</h5></p>
+              </div>
+              <div className="col s4 m3">
+                <img style={{float:"right"}} src={user.picture} alt={user.name} />
+              </div>
+            </div>
             {/* <p>Welcome!</p> */}
-            <img style={{float:"right"}} src={user.picture} alt={user.name} />
+            {/* <img style={{float:"right"}} src={user.picture} alt={user.name} />
             <p><h5>Welcome back {user.nickname}!</h5></p>
             <p><h5>Keep track of your current stocks and stocks interested in<br />by visiting the links below!</h5></p>
-            <p><h5>Happy investing!</h5></p>
+            <p><h5>Happy investing!</h5></p> */}
             {/* <h4>{user.nickname}</h4> */}
             {/* <p>{user.email}</p> */}
             <br />
