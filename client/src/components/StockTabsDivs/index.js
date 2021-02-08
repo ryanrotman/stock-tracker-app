@@ -4,21 +4,6 @@ import "./index.css";
 
 function StockTabsDivs(props) {
 
-    let today = moment().format("YYYY-MM-DD");
-    // let longDate = moment().format("dddd, MMMM DD, YYYY")
-    console.log("TODAY IS: ", today);
-
-    // console.log("STOCK DATA PASSED INTO TABS DIVS", props.stockData);
-    // console.log("GRAB THE TIME SERIES SECTION: ", props.stockData["Time Series (Daily)"]);
-    // console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"]["2021-01-15"]);
-
-    // let stockDataObj = props.stockData["Time Series (Daily)"];
-    // let keys = Object.keys(stockDataObj);
-    // console.log("STOCK DATA KEYS:", keys);
-    // console.log("THE LAST DAY OF DATA DATE: ", keys[0])
-    // let longDate = moment(keys[0]).format("dddd, MMMM DD, YYYY");
-    // console.log("THE LAST DAY OF DATA: ", props.stockData["Time Series (Daily)"][keys[0]]);
-
     let todaysData;
     let longDate;
     if (props.stockData["Time Series (Daily)"]) {
@@ -27,12 +12,6 @@ function StockTabsDivs(props) {
         todaysData = props.stockData["Time Series (Daily)"][keys[0]];
         longDate = moment(keys[0]).format("dddd, MMMM DD, YYYY");
     } ;
-
-    // let dataObject = props.stockData["Time Series (Daily)"];
-
-    // console.log("LIST OF KEYS: ", Object.keys(dataObject));
-
-    // setTimeout(function(){ console.log("GRAB THE CURRENT DAY: ", props.stockData["Time Series (Daily)"][today]); }, 6000);
 
     return (
         <div id={props.symbol} className="col s12">
