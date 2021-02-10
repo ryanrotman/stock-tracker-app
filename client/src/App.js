@@ -27,14 +27,8 @@ function App() {
                     <Login />
                 </Route>
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-                    {/* <Dashboard />
-                </ProtectedRoute> */}
                 <ProtectedRoute exact path="/current" component={Current} />
-                    {/* <Current />
-                </ProtectedRoute> */}
                 <ProtectedRoute exact path="/interested" component={Interested} />
-                    {/* <Interested />
-                </ProtectedRoute> */}
                 <Route>
                     <NoMatch />
                 </Route>
