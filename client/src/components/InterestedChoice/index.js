@@ -6,9 +6,6 @@ function InterestedChoice() {
         <div className="col s12 m6">
             <h4 className="header center-align">Interested In Stocks:</h4>
             <div className="card horizontal">
-            {/* <div className="card-image">
-                <i className="fas fa-search"></i>
-            </div> */}
             <div className="card-stacked">
                 <div className="card-action center-align">
                 <Link to="/interested" className="link-interested">Click here to view interested in stocks</Link>
