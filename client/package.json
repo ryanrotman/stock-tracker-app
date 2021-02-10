@@ -6,8 +6,12 @@
     "dependencies": {
         "@auth0/auth0-react": "^1.2.0",
         "axios": "^0.21.0",
+        "materialize-css": "^1.0.0",
+        "moment": "^2.29.1",
+        "plotly.js": "^1.58.4",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "react-plotly.js": "^2.5.1",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.1"
     },

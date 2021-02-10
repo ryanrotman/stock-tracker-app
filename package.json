@@ -24,10 +24,6 @@
         "dotenv": "^8.2.0",
         "express": "^4.16.3",
         "if-env": "^1.0.4",
-        "materialize-css": "^1.0.0",
-        "moment": "^2.29.1",
-        "mongoose": "^5.8.11",
-        "plotly.js": "^1.58.4",
-        "react-plotly.js": "^2.5.1"
+        "mongoose": "^5.8.11"
     }
 }
