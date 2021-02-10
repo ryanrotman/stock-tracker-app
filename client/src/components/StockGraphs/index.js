@@ -1,4 +1,4 @@
-import Plot from 'react-plotly.js';
+import Plot from "react-plotly.js";
 
 function StockGraphs(props) {
 

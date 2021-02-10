@@ -1,4 +1,4 @@
-import moment from "moment"
+import moment from "moment";
 import StockGraphs from "../StockGraphs";
 import "./index.css";
 
