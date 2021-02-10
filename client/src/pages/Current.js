@@ -21,7 +21,7 @@ function Current() {
     const { user } = useAuth0();
 
     useEffect(() => {
-        console.log("LOADING STOCKS FROM DATABASE");
+        // console.log("LOADING STOCKS FROM DATABASE");
         loadStocks();
     }, []);
 
@@ -32,22 +32,22 @@ function Current() {
     }
 
     function onTabShow() {
-        console.log("STOCK GRAPH CONTENT SHOULD LOAD NOW");
+        // console.log("STOCK GRAPH CONTENT SHOULD LOAD NOW");
         let stockSymbol = document.querySelector(".active").innerHTML;
-        console.log("STOCK SYMBOL OF SELECTED TAB", stockSymbol);
+        // console.log("STOCK SYMBOL OF SELECTED TAB", stockSymbol);
 
         let stockChartXValuesList = [];
         let stockChartYValuesList = [];
 
         API.getStockData(stockSymbol).then((res) => {
-            console.log("DATA FROM GRAPH BUILD API CALL: ", res.data);
+            // console.log("DATA FROM GRAPH BUILD API CALL: ", res.data);
             let data = res.data
             for (var key in data["Time Series (Daily)"]) {
                 stockChartXValuesList.push(key);
                 stockChartYValuesList.push(data["Time Series (Daily)"][key]["4. close"]);
             }
-            console.log("X VALUES: ", stockChartXValuesList);
-            console.log("Y VALUES: ", stockChartYValuesList);
+            // console.log("X VALUES: ", stockChartXValuesList);
+            // console.log("Y VALUES: ", stockChartYValuesList);
             setStockChartXValues(stockChartXValuesList);
             setStockChartYValues(stockChartYValuesList);
             setStockData(data)
@@ -61,7 +61,7 @@ function Current() {
         })
     }
 
-    console.log("FORM INPUT----------> ", formInput);
+    // console.log("FORM INPUT----------> ", formInput);
 
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -86,8 +86,8 @@ function Current() {
         status = status.slice(1)
         let stockSymbol = event.target.dataset.value;
         let company = event.target.dataset.company;
-        console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
-        console.log("LOGGED IN USER: ", user.sub);
+        // console.log("StockSelection: ", `Stock ${stockSymbol} has been selected for the ${status} page.`);
+        // console.log("LOGGED IN USER: ", user.sub);
 
         API.saveStock({
             user: user.sub,
@@ -109,14 +109,14 @@ function Current() {
             user: currentUser,
             status: "current"
         }).then((res) => {
-            console.log("LOAD CURRENT STOCKS RES: ", res);
+            // console.log("LOAD CURRENT STOCKS RES: ", res);
             setStocks(res.data);
             tabInit();
         }).catch((err) => console.log(err));
     };
 
     function handleStockDelete(id) {
-        console.log("ID OF STOCK BEING DELETED", id);
+        // console.log("ID OF STOCK BEING DELETED", id);
         API.deleteStock(id)
             .then(res => loadStocks())
             .then(res => onTabShow())
@@ -172,15 +172,8 @@ function Current() {
                             />    
                             ))
                         ) : (
-                            // <h6 className="tab"><strong>No Stocks Have Been Saved</strong></h6>
                             <li className="tab"><strong>No Stocks Have Been Saved</strong></li>
                         )}
-                        {/* {stocks.map(stock => (
-                            <StockTabs
-                                key={stock._id}
-                                symbol={stock.symbol}
-                            />
-                        ))} */}
                     </ul>
                 </div>
                 {stocks.map(stock => (
