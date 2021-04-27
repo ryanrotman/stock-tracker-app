@@ -16,9 +16,9 @@ const Auth0ProviderWithHistory = ({ children }) => {
       domain={domain}
       clientId={clientId}
       // this redirect is for development
-      // redirectUri="http://localhost:3000/dashboard"
+      redirectUri="http://localhost:3000/dashboard"
       // this redirect is for live
-      redirectUri="https://app-stock-investment-tracker.herokuapp.com/dashboard"
+      // redirectUri="https://app-stock-investment-tracker.herokuapp.com/dashboard"
       onRedirectCallback={onRedirectCallback}
     >
       {children}
