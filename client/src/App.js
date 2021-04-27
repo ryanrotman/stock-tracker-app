@@ -27,7 +27,7 @@ function App() {
                     <Login />
                 </Route>
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-                <ProtectedRoute 
+                <ProtectedRoute
                     render={(props) => (
                         <Current
                             {...props}
@@ -36,7 +36,15 @@ function App() {
                     )}
                     exact path="/current"
                 />
-                <ProtectedRoute exact path="/interested" component={Interested} />
+                <ProtectedRoute
+                    render={(props) => (
+                        <Interested
+                            {...props}
+                            // TODO: insert needed props here
+                        />
+                    )}
+                    exact path="/interested"
+                />
                 <Route>
                     <NoMatch />
                 </Route>
