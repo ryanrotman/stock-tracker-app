@@ -28,7 +28,7 @@ function App() {
                 </Route>
                 <ProtectedRoute exact path="/dashboard" component={Dashboard} />
                 <ProtectedRoute 
-                    render = {(props) => (
+                    render={(props) => (
                         <Current
                             {...props}
                             // TODO: insert needed props here
